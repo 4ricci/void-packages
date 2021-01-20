@@ -1,16 +1,21 @@
 # Template file for 'oath-toolkit'
 pkgname=oath-toolkit
 version=2.6.5
-revision=1
+revision=2
+wrksrc=oath-toolkit-c2a2d9239948833159a212a223b6338a359bae2c
 build_style=gnu-configure
-hostmakedepends="pkg-config"
+hostmakedepends="pkg-config autoconf automake libtool"
 makedepends="pam-devel"
 short_desc="OATH one-time password toolkit"
 maintainer="Farhad Shahbazi <grauwolf@geekosphere.org>"
 license="GPL-3.0-or-later"
 homepage="http://www.nongnu.org/oath-toolkit/"
-distfiles="http://download.savannah.gnu.org/releases/${pkgname}/${pkgname}-${version}.tar.gz"
-checksum=d207120c7e7fdd540142d04ca06d83fb3277c8f2fb794a74535d04b2aa0ec219
+distfiles="https://gitlab.com/oath-toolkit/oath-toolkit/-/archive/c2a2d9239948833159a212a223b6338a359bae2c/oath-toolkit-c2a2d9239948833159a212a223b6338a359bae2c.tar.bz2"
+checksum=ba5b0c0504219558f43939436d3f45b05955dfa27d7529377a7de63cd5b0e634
+
+pre_configure() {
+	autoreconf -fi
+}
 
 oath-toolkit-devel_package() {
 	short_desc+=" - development files"
